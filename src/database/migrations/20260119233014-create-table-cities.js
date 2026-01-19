@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    //CRIA A TABELA DE
+    //CRIA A TABELA DE MUNICÍPIOS
     await queryInterface.createTable("cities", {
       id: {
         type: Sequelize.UUID,
