@@ -10,7 +10,6 @@ import Lot from "./Lot.js";
 import UrbanParameter from "./UrbanParameter.js";
 import User from "./User.js";
 import UsesTypes from "./UsesTypes.js";
-import Zone from "./Zone.js";
 
 //INICIALIZAR A CONEXÃO
 const sequelize = new Sequelize(config);

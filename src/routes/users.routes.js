@@ -1,13 +1,12 @@
-/*import { Router } from "express";
-import UserController from "../controllers/UserController.js";
+import { Router } from "express";
+import CityController from "../controllers/CityController.js";
 
 const routes = Router();
 
-routes.get("/", UserController.index);
-routes.get("/show/:id", UserController.show);
-routes.post("/", UserController.store);
-routes.delete("/", UserController.delete);
-routes.put("/", UserController.update);
+routes.get("/", CityController.index);
+routes.get("/show/:id", CityController.show);
+routes.post("/", CityController.store);
+routes.delete("/:id", CityController.delete);
+routes.put("/:id", CityController.update);
 
 export default routes;
-*/
