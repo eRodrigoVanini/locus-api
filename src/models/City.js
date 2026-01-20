@@ -15,11 +15,17 @@ class City extends Model {
       },
       { sequelize, tableName: "cities" },
     );
-    
+
     return this;
   }
+
+  // RELACIONAMENTO COM ZONAS
+  static associate(models) {
+    this.hasMany(models.Zone, {
+      foreignKey: "city_id",
+      as: "zones", 
+    });
+  }
 }
-
-
 
 export default City;

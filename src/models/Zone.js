@@ -18,6 +18,10 @@ class City extends Model {
     
     return this;
   }
+  // Zone pertence a uma City
+  static associate(models) {
+    this.belongsTo(models.City, { foreignKey: "city_id", as: "city" });
+  }
 }
 
 
