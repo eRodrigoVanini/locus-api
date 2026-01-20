@@ -15,8 +15,11 @@ class City extends Model {
       },
       { sequelize, tableName: "cities" },
     );
+    
     return this;
   }
 }
+
+
 
 export default City;

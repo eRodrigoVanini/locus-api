@@ -4,7 +4,7 @@ class CitiesController {
   // LISTAR TODOS OS MUNICÍPIOS
   async index(req, res) {
     try {
-      const cities = await City.findAll({ 
+      const cities = await City.findAll({
         attributes: ["id", "name", "state"],
         order: [["name", "ASC"]],
       });
@@ -18,12 +18,31 @@ class CitiesController {
   // CRIAR MUNICÍPIO
   async store(req, res) {
     try {
-      const { name, state } = req.body; 
+      const { name, state } = req.body;
 
       const city = await City.create({ name, state });
       return res.status(201).json(city);
     } catch (error) {
-      return res.status(400).json({ error: error.message }); 
+      return res.status(400).json({ error: error.message });
+    }
+  }
+
+  // MOSTRAR UM MUNICÍPIO
+  async show(req, res) {
+    try {
+      const { id } = req.params;
+
+      const city = await City.findByPk(id, {
+        attributes: ["id", "name", "state", "created_at"],
+      });
+
+      if (!city) {
+        return res.status(404).json({ error: "Cidade não encontrada" });
+      }
+
+      return res.json(city);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
     }
   }
 
