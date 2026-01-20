@@ -1,21 +1,42 @@
 import Sequelize, { Model } from "sequelize";
 
-class City extends Model {
+class Zone extends Model {
   static init(sequelize) {
     super.init(
       {
+        id: {
+          type: Sequelize.UUID,
+          defaultValue: Sequelize.UUIDV4,
+          primaryKey: true,
+        },
         name: {
           type: Sequelize.STRING,
           allowNull: false,
+        },
+        acronym: {
+          type: Sequelize.STRING(2),
+          allowNull: false,
+        },
+        description: {
+          type: Sequelize.STRING,
+          allowNull: true,
+        },
+        city_id: {
+          type: Sequelize.UUID,
+          allowNull: false,
+          references: {
+            model: "cities",
+            key: "id",
+          },
         },
         state: {
           type: Sequelize.STRING,
           allowNull: false,
         },
       },
-      { sequelize, tableName: "cities" },
+      { sequelize, tableName: "zones" },
     );
-    
+
     return this;
   }
   // Zone pertence a uma City
@@ -24,6 +45,4 @@ class City extends Model {
   }
 }
 
-
-
-export default City;
+export default Zone;

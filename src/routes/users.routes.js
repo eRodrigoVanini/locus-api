@@ -1,4 +1,4 @@
-import { Router } from "express";
+/*import { Router } from "express";
 import UserController from "../controllers/UserController.js";
 
 const routes = Router();
@@ -10,3 +10,4 @@ routes.delete("/", UserController.delete);
 routes.put("/", UserController.update);
 
 export default routes;
+*/

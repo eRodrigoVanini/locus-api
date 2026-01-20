@@ -4,6 +4,11 @@ class City extends Model {
   static init(sequelize) {
     super.init(
       {
+        id: {
+          type: Sequelize.UUID,
+          defaultValue: Sequelize.UUIDV4,
+          primaryKey: true,
+        },
         name: {
           type: Sequelize.STRING,
           allowNull: false,
@@ -23,7 +28,7 @@ class City extends Model {
   static associate(models) {
     this.hasMany(models.Zone, {
       foreignKey: "city_id",
-      as: "zones", 
+      as: "zones",
     });
   }
 }

@@ -1,9 +1,13 @@
-const dotenv = require("dotenv");
+import dotenv from "dotenv";
 dotenv.config();
+import "./src/models/index.js";
 
-const express = require("express");
+import express from "express";
 const app = express();
+app.use(express.json());
 const PORT = process.env.PORT;
+
+import routes from "./src/routes/index.routes.js";
 
 routes(app);
 

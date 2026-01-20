@@ -1,6 +1,6 @@
-require("dotenv").config();
+import 'dotenv/config'; 
 
-module.exports = {
+export default {
   dialect: "postgres",
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
