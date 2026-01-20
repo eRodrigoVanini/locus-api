@@ -4,13 +4,30 @@ import config from "../config/database.js";
 //IMPORTAR TODOS OS MODELS AQUI
 import City from "./City.js";
 import Zone from "./Zone.js";
+import Analysis from "./Analysis.js";
+import File from "./File.js";
+import Lot from "./Lot.js";
+import UrbanParameter from "./UrbanParameter.js";
+import User from "./User.js";
+import UsesTypes from "./UsesTypes.js";
+import Zone from "./Zone.js";
 
 //INICIALIZAR A CONEXÃO
 const sequelize = new Sequelize(config);
 
 //LISTA DE MODELS
 // Toda vez que criar um arquivo novo, adiciono neste array
-const models = [City, Zone];
+const models = [
+  City,
+  Zone,
+  Analysis,
+  File,
+  Lot,
+  UrbanParameter,
+  User,
+  UsesTypes,
+  Zone,
+];
 
 //INICIALIZAR
 models.forEach((model) => model.init(sequelize));

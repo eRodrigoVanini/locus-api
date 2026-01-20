@@ -1,40 +1,44 @@
-import Sequelize from 'sequelize';
+import Sequelize, { Model } from 'sequelize';
 
-export default {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('files', {
-      id: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
-        allowNull: false,
-        primaryKey: true,
+class File extends Model {
+  static init(sequelize) {
+    super.init(
+      {
+        id: {
+          type: Sequelize.UUID,
+          defaultValue: Sequelize.UUIDV4,
+          primaryKey: true,
+        },
+        original_name: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        file_name: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        path: {
+          type: Sequelize.STRING,
+          allowNull: false,
+          unique: true, // Evita nomes de arquivo duplicados no disco
+        },
+        // CAMPO VIRTUAL: Existe só aqui no código, não vai pro banco
+        url: {
+          type: Sequelize.VIRTUAL,
+          get() {
+            const url = process.env.APP_URL;
+            return `${url}/files/${this.path}`;
+          },
+        },
       },
-      original_name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      file_name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      // Geralmente armazenamos o caminho relativo ou o hash aqui
-      path: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true, 
-      },
-      created_at: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-      updated_at: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-    });
-  },
+      {
+        sequelize,
+        tableName: 'files',
+      }
+    );
 
-  async down(queryInterface) {
-    await queryInterface.dropTable('files');
-  },
-};
+    return this;
+  }
+}
+
+export default File;

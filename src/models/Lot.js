@@ -22,22 +22,20 @@ class Lot extends Model {
           allowNull: false,
         },
         total_area: {
-          type: Sequelize.FLOAT, // Área total do terreno
+          type: Sequelize.FLOAT, // Área total do terreno em m²
           allowNull: false,
         },
         status: {
-          type: Sequelize.STRING, // Ex: "available", "sold", "analyzed"
-          defaultValue: "available",
+          type: Sequelize.STRING, // 'available', 'analyzed', etc
+          defaultValue: 'available',
         },
-        // Chaves Estrangeiras
+        // Apenas os tipos das FKs aqui para o Sequelize saber
         user_id: {
           type: Sequelize.UUID,
-          references: { model: 'users', key: 'id' },
           allowNull: false,
         },
         zone_id: {
           type: Sequelize.UUID,
-          references: { model: 'zones', key: 'id' },
           allowNull: false,
         },
       },
@@ -51,15 +49,11 @@ class Lot extends Model {
   }
 
   static associate(models) {
+    // Lote pertence a um Usuário
     this.belongsTo(models.User, { foreignKey: 'user_id', as: 'owner' });
-    this.belongsTo(models.Zone, { foreignKey: 'zone_id', as: 'zone' });
     
-    // Associação com FOTOS (Usando a tabela File existente)
-    this.belongsToMany(models.File, { 
-      through: 'lot_files', 
-      as: 'photos',
-      foreignKey: 'lot_id'
-    });
+    // Lote pertence a uma Zona
+    this.belongsTo(models.Zone, { foreignKey: 'zone_id', as: 'zone' });
   }
 }
 
