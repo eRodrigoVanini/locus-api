@@ -24,14 +24,6 @@ class Zone extends Model {
         city_id: {
           type: Sequelize.UUID,
           allowNull: false,
-          references: {
-            model: "cities",
-            key: "id",
-          },
-        },
-        state: {
-          type: Sequelize.STRING,
-          allowNull: false,
         },
       },
       { sequelize, tableName: "zones" },
