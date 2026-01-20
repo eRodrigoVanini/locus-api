@@ -9,7 +9,7 @@ import File from "./File.js";
 import Lot from "./Lot.js";
 import UrbanParameter from "./UrbanParameter.js";
 import User from "./User.js";
-import UsesTypes from "./UsesTypes.js";
+import UsesTypes from "./UseType.js";
 
 //INICIALIZAR A CONEXÃO
 const sequelize = new Sequelize(config);
@@ -25,7 +25,6 @@ const models = [
   UrbanParameter,
   User,
   UsesTypes,
-  Zone,
 ];
 
 //INICIALIZAR

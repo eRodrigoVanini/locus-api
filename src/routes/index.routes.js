@@ -6,11 +6,11 @@ import urbanParametersRoutes from "./urbanParameters.routes.js";
 import usersRoutes from "./users.routes.js";
 import useTypesRoutes from "./usesTypes.routes.js";
 import zonesRoutes from "./zones.routes.js";
-import analysisRoutes from "./analysis.routes.js";
+import analysesRoutes from "./analyses.routes.js";
 
 const routes = (app) => {
   app.use("/cities", citiesRoutes);
-  app.use("/analysis", analysisRoutes);
+  app.use("/analyses", analysesRoutes);
   app.use("/files", filesRoutes);
   app.use("/lots", lotsRoutes);
   app.use("/urbanParameters", urbanParametersRoutes);
