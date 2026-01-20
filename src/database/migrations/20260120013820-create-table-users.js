@@ -14,14 +14,21 @@ export default {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      age: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
       email: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
+      },
+      birthdate: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      avatar_id: {
+        type: Sequelize.UUID,
+        references: { model: "files", key: "id" },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
+        allowNull: true,
       },
       password_hash: {
         type: Sequelize.STRING,

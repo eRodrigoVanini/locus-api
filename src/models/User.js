@@ -35,6 +35,11 @@ class User extends Model {
           type: Sequelize.DATE,
           allowNull: false,
         },
+        avatar_id: {
+          type: Sequelize.UUID, // Importante: UUID para bater com a tabela Files
+          references: { model: "files", key: "id" },
+          allowNull: true,
+        },
         password_hash: {
           type: Sequelize.STRING,
         },
@@ -59,9 +64,9 @@ class User extends Model {
     });
     return this;
   }
-  static associate(models) {
-    this.hasOne(models.UserPhoto, { foreignKey: "user_id" });
-  }
+static associate(models) {
+  this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
+}
 
   passwordIsValid(password) {
     return bcrypt.compare(password, this.password_hash);
