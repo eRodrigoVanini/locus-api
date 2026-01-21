@@ -1,12 +1,14 @@
 import { Router } from "express";
-import CityController from "../controllers/CityController.js";
+import multer from "multer";
+import multerConfig from "../config/multerConfig.js";
 
-const routes = Router();
+import FileController from "../controllers/FileController.js";
 
-routes.get("/", CityController.index);
-routes.get("/show/:id", CityController.show);
-routes.post("/", CityController.store);
-routes.delete("/:id", CityController.delete);
-routes.put("/:id", CityController.update);
+import loginRequired from "../middlewares/loginRequired.js";
+
+const routes = new Router();
+const upload = multer(multerConfig);
+
+routes.post("/", loginRequired, upload.single("file"), FileController.store);
 
 export default routes;

@@ -1,12 +1,12 @@
 import { Router } from "express";
-import CityController from "../controllers/CityController.js";
+import UseTypeController from "../controllers/UseTypeController.js";
 
 const routes = Router();
 
-routes.get("/", CityController.index);
-routes.get("/show/:id", CityController.show);
-routes.post("/", CityController.store);
-routes.delete("/:id", CityController.delete);
-routes.put("/:id", CityController.update);
+routes.get("/", UseTypeController.index);
+routes.get("/show/:id", UseTypeController.show);
+routes.post("/", UseTypeController.store);
+routes.delete("/:id", UseTypeController.delete);
+routes.put("/:id", UseTypeController.update);
 
 export default routes;

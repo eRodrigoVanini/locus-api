@@ -64,9 +64,22 @@ class User extends Model {
     });
     return this;
   }
-static associate(models) {
-  this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
-}
+  static associate(models) {
+    this.belongsTo(models.File, { foreignKey: "avatar_id", as: "avatar" });
+
+    this.hasMany(models.Lot, {
+      foreignKey: "user_id",
+      as: "lots",
+      onDelete: "CASCADE",
+      hooks: true,
+    });
+
+    if (models.Analysis) {
+      this.hasMany(models.Analysis, {
+        foreignKey: "lot_id",
+      });
+    }
+  }
 
   passwordIsValid(password) {
     return bcrypt.compare(password, this.password_hash);

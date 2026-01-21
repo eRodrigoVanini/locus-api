@@ -1,22 +1,16 @@
 import { Router } from "express";
+import LotController from "../controllers/LotController.js";
+import loginRequired from "../middlewares/loginRequired.js";
 
 const routes = Router();
 
-// Importando os Controllers
-import {
-  store,
-  index,
-  getLot,
-  deleteLot,
-  updateLot,
-} from "../controllers/LotController.js";
 
 // Rotas da Aplicação
 
-routes.post("/", store);
-routes.get("/", index);
-routes.get("/:id", getLot);
-routes.delete("/:id", deleteLot);
-routes.put("/:id", updateLot);
+routes.post("/", loginRequired, LotController.store);
+routes.get("/", loginRequired, LotController.index);
+routes.get("/:id", loginRequired, LotController.show);
+routes.delete("/:id", loginRequired, LotController.delete);
+routes.put("/:id", loginRequired, LotController.update);
 
 export default routes;
