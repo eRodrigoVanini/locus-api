@@ -1,7 +1,6 @@
 import City from "../models/City.js";
 
 class CitiesController {
-  // LISTAR TODOS OS MUNICÍPIOS
   async index(req, res) {
     try {
       const cities = await City.findAll({
@@ -15,7 +14,6 @@ class CitiesController {
     }
   }
 
-  // CRIAR MUNICÍPIO
   async store(req, res) {
     try {
       const { name, state } = req.body;
@@ -27,7 +25,6 @@ class CitiesController {
     }
   }
 
-  // MOSTRAR UM MUNICÍPIO
   async show(req, res) {
     try {
       const { id } = req.params;
@@ -46,7 +43,6 @@ class CitiesController {
     }
   }
 
-  // DELETAR MUNICÍPIO
   async delete(req, res) {
     try {
       const { id } = req.params;
@@ -62,7 +58,6 @@ class CitiesController {
     }
   }
 
-  // ATUALIZAR MUNICÍPIO
   async update(req, res) {
     try {
       const { id } = req.params;
@@ -83,4 +78,4 @@ class CitiesController {
   }
 }
 
-export default new CitiesController();
+export default CitiesController();

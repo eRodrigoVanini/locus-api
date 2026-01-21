@@ -11,10 +11,7 @@ const __dirname = path.dirname(__filename);
 import express from "express";
 const app = express();
 app.use(express.json());
-app.use(
-  "/files",
-  express.static(path.resolve(__dirname, "uploads")),
-);
+app.use("/files", express.static(path.resolve(__dirname, "uploads")));
 const PORT = process.env.PORT;
 
 import routes from "./src/routes/index.routes.js";

@@ -8,5 +8,6 @@ routes.post("/", UserController.store);
 routes.get("/", loginRequired, UserController.index);
 routes.get("/show/", loginRequired, UserController.show);
 routes.put("/", loginRequired, UserController.update);
+routes.delete("/", loginRequired, UserController.delete);
 
 export default routes;
