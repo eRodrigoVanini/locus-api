@@ -1,24 +1,23 @@
 import File from "../models/File.js";
 
-
 class FileController {
   async store(req, res) {
-    // Se não veio arquivo, erro
     if (!req.file) {
       return res.status(400).json({ error: "Arquivo não enviado." });
     }
 
-    const { originalname: name, filename: path } = req.file;
+    // Desestruturação simples
+    const { originalname, filename } = req.file;
 
     try {
-      // Apenas cria o registro na tabela Files
       const file = await File.create({
-        name,
-        path,
+        original_name: originalname, 
+        file_name: filename,        
       });
 
       return res.json(file);
     } catch (error) {
+      console.error(error);
       return res.status(500).json({ error: "Erro ao salvar arquivo." });
     }
   }

@@ -1,4 +1,4 @@
-import Sequelize, { Model } from 'sequelize';
+import Sequelize, { Model } from "sequelize";
 
 class File extends Model {
   static init(sequelize) {
@@ -9,32 +9,21 @@ class File extends Model {
           defaultValue: Sequelize.UUIDV4,
           primaryKey: true,
         },
-        original_name: {
-          type: Sequelize.STRING,
-          allowNull: false,
-        },
-        file_name: {
-          type: Sequelize.STRING,
-          allowNull: false,
-        },
-        path: {
-          type: Sequelize.STRING,
-          allowNull: false,
-          unique: true, // Evita nomes de arquivo duplicados no disco
-        },
-        // CAMPO VIRTUAL: Existe só aqui no código, não vai pro banco
+        // ---------------------------------
+
+        original_name: Sequelize.STRING,
+        file_name: Sequelize.STRING,
+
         url: {
           type: Sequelize.VIRTUAL,
           get() {
-            const url = process.env.APP_URL;
-            return `${url}/files/${this.path}`;
+            return `http://localhost:3000/files/avatars/${this.file_name}`;
           },
         },
       },
       {
         sequelize,
-        tableName: 'files',
-      }
+      },
     );
 
     return this;
