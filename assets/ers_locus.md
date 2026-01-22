@@ -83,14 +83,14 @@ A tecnologia escolhida (JavaScript/Node.js) é de código aberto, amplamente doc
 
 ### 2.3 Características do Usuário
 
-Os usuários do sistema possuem nível superior (Arquitetos, Engenheiros, Investidores) e conhecimento intermediário em informática, sendo capazes de navegar em interfaces web e compreender conceitos urbanísticos básicos.
+Os usuários do sistema (Arquitetos, Engenheiros, Investidores) possuem conhecimento básico/intermediário em arquitetura, urbanismo e informática, sendo capazes de navegar em interfaces web e compreender conceitos urbanísticos básicos.
 
 ### 2.4 Limites, Suposições e Dependências
 
 **Limites:**
 
 - O sistema não realizará análise de projetos arquitetônicos completos (plantas, cortes, fachadas)
-- Limitado aos cálculos de CA e TO conforme legislação municipal
+- Limitado aos cálculos dos índices conforme legislação municipal
 
 **Suposições:**
 
@@ -109,7 +109,7 @@ Funcionalidades planejadas para versões futuras:
 
 - Geração de relatório em PDF para impressão
 - Cálculo de recuos frontais e laterais (será implementado na versão 2.0)
-- Integração com mapas (Google Maps)
+- Integração com mapas
 
 ---
 
@@ -118,7 +118,7 @@ Funcionalidades planejadas para versões futuras:
 ### 3.1 Atores do Sistema
 
 - **Administrador:** Responsável por cadastrar a "Inteligência" do sistema (Cidades, Zonas, Tipos de Uso e os Índices Urbanísticos)
-- **Usuário Final (Arquiteto/Investidor):** Responsável por cadastrar os dados do Lote e solicitar o cálculo de viabilidade
+- **Usuário Final (Arquiteto/Investidor/Corretor/Estudante):** Responsável por cadastrar os dados do Lote e solicitar o cálculo de viabilidade
 
 ### 3.2 Requisitos Funcionais (RF)
 
@@ -131,7 +131,7 @@ O sistema deve permitir criar, listar, editar e remover usuários (Nome, Email, 
 O sistema deve permitir criar, editar e remover Municípios (Nome, UF).
 
 **[RF003] Manter Zonas**  
-O sistema deve permitir criar, editar e remover Zonas Urbanas (ex: ZRU, ZC, ZI) vinculadas obrigatoriamente a uma Cidade.
+O sistema deve permitir criar, editar e remover Zonas Urbanas (ex: ZRU, ZC, ZI) vinculadas obrigatoriamente a um Município.
 
 **[RF004] Manter Tipos de Uso**  
 O sistema deve permitir criar, listar, editar e remover naturezas de uso do solo (ex: Residencial Unifamiliar, Comercial, Industrial).
@@ -165,8 +165,7 @@ O usuário deve poder informar:
 **[RF009] Calcular Viabilidade**  
 O sistema deve processar os dados do lote cruzando com as Regras de Zoneamento (RF005) e retornar:
 
-- Área Máxima Computável (Área Construída)
-- Área Máxima de Ocupação no Térreo (Projeção)
+- Os índices urbanísticos referentes àquele Município
 
 ### 3.3 Regras de Negócio (RN)
 
@@ -181,8 +180,6 @@ O sistema deve processar os dados do lote cruzando com as Regras de Zoneamento (
 ```
 Área Máxima Térreo = Área do Lote × Taxa de Ocupação (TO)
 ```
-
-_Nota: Se a TO for percentual (ex: 60), deve-se dividir por 100._
 
 **[RN003] Integridade de Zona**  
 Uma Zona não pode existir sem estar vinculada a uma Cidade.

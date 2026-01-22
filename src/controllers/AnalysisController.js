@@ -23,7 +23,7 @@ class AnalysisController {
 
       const { lot_id, use_type_id } = req.body;
 
-      // Buscar o Lote (Precisamos da Área Total e da Zona dele)
+      // Buscar o Lote 
       const lot = await Lot.findByPk(lot_id, {
         include: [{ model: Zone, as: "zone" }],
       });
@@ -32,14 +32,14 @@ class AnalysisController {
         return res.status(404).json({ error: "Lote não encontrado." });
       }
 
-      // Segurança: Verifica se o lote pertence ao usuário logado
+      // Verifica se o lote pertence ao usuário logado
       if (lot.user_id !== req.userId) {
         return res
           .status(401)
           .json({ error: "Você não tem permissão para analisar este lote." });
       }
 
-      // Buscar os Parâmetros Urbanísticos (A Regra do Jogo)
+      // Buscar os Parâmetros Urbanísticos
       const params = await UrbanParameter.findOne({
         where: {
           zone_id: lot.zone_id,

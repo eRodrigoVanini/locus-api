@@ -8,6 +8,7 @@ import useTypesRoutes from "./usesTypes.routes.js";
 import zonesRoutes from "./zones.routes.js";
 import analysesRoutes from "./analyses.routes.js";
 import tokenRoutes from "./token.routes.js";
+import simulationRoutes from "./simulation.routes.js";
 
 const routes = (app) => {
   app.use("/cities", citiesRoutes);
@@ -19,6 +20,7 @@ const routes = (app) => {
   app.use("/useTypes", useTypesRoutes);
   app.use("/zones", zonesRoutes);
   app.use("/tokens", tokenRoutes);
+  app.use("/simulations", simulationRoutes);
 };
 
 export default routes;
