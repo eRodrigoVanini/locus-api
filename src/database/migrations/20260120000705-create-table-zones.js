@@ -15,7 +15,7 @@ module.exports = {
         allowNull: false,
       },
       acronym: {
-        type: Sequelize.STRING(2),
+        type: Sequelize.STRING(5),
         allowNull: false,
       },
       description: {
