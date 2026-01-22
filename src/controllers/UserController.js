@@ -40,7 +40,7 @@ class UserController {
     try {
       const users = await User.findAll({
         attributes: ["id", "name", "email", "birthdate"], // Protege a senha
-        include: [
+       /* include: [
           {
             model: File,
             as: "avatar",
@@ -48,7 +48,7 @@ class UserController {
           },
         ],
         order: [["created_at", "DESC"]],
-      });
+      */});
 
       return res.json(users);
     } catch (error) {

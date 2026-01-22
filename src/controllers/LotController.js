@@ -1,7 +1,6 @@
 import * as Yup from 'yup';
 import Lot from '../models/Lot.js';
 import Zone from '../models/Zone.js';
-import User from '../models/User.js'; // Importado caso precise validar algo do usuário
 
 class LotController {
   // 1. CRIAR (STORE)
@@ -12,7 +11,7 @@ class LotController {
         name: Yup.string().required(),
         description: Yup.string(),
         total_area: Yup.number().required(),
-        status: Yup.string(), // ex: 'available', 'sold'
+        status: Yup.string(), 
         zone_id: Yup.string().uuid().required(),
       });
 
@@ -22,7 +21,7 @@ class LotController {
 
       const { name, description, total_area, status, zone_id } = req.body;
 
-      // Verifica se a zona existe antes de criar
+    
       const zoneExists = await Zone.findByPk(zone_id);
       if (!zoneExists) {
         return res.status(400).json({ error: 'A Zona informada não existe.' });
@@ -34,7 +33,7 @@ class LotController {
         total_area,
         status,
         zone_id,
-        // SEGURANÇA: O dono é quem está logado
+   
         user_id: req.userId,
       });
 
@@ -44,7 +43,7 @@ class LotController {
     }
   }
 
-  // 2. LISTAR TODOS (INDEX)
+
   async index(req, res) {
     try {
       const lots = await Lot.findAll({
@@ -61,7 +60,6 @@ class LotController {
     }
   }
 
-  // 3. MOSTRAR UM (SHOW)
   async show(req, res) {
     try {
       const { id } = req.params;
@@ -83,13 +81,13 @@ class LotController {
     }
   }
 
-  // 4. ATUALIZAR (UPDATE)
+
   async update(req, res) {
     try {
       const { id } = req.params;
       const { name, description, total_area, status, zone_id } = req.body;
 
-      // Validação dos dados que chegaram
+
       const schema = Yup.object().shape({
         name: Yup.string(),
         description: Yup.string(),
@@ -107,12 +105,11 @@ class LotController {
         return res.status(404).json({ error: 'Lote não encontrado.' });
       }
 
-      // SEGURANÇA: Só o dono pode editar
+ 
       if (lot.user_id !== req.userId) {
         return res.status(401).json({ error: 'Você não tem permissão para editar este lote.' });
       }
 
-      // Validação de consistência: Se trocou a zona, verifique se a nova existe
       if (zone_id && zone_id !== lot.zone_id) {
         const zoneExists = await Zone.findByPk(zone_id);
         if (!zoneExists) {
@@ -128,7 +125,6 @@ class LotController {
         zone_id,
       });
 
-      // Recarrega para devolver completo
       const updatedLot = await Lot.findByPk(id, {
         include: [
           { association: 'owner', attributes: ['id', 'name'] },
@@ -142,7 +138,7 @@ class LotController {
     }
   }
 
-  // 5. DELETAR (DELETE)
+
   async delete(req, res) {
     try {
       const { id } = req.params;
@@ -153,7 +149,7 @@ class LotController {
         return res.status(404).json({ error: 'Lote não encontrado.' });
       }
 
-      // SEGURANÇA: Verifica se quem quer deletar é o dono
+  
       if (lot.user_id !== req.userId) {
         return res.status(401).json({ error: 'Você não tem permissão para deletar este lote.' });
       }

@@ -6,10 +6,8 @@ import Zone from "../models/Zone.js";
 import UseType from "../models/UseType.js";
 
 class AnalysisController {
-  // 1. CRIAR ANÁLISE (STORE)
   async store(req, res) {
     try {
-      // Validação
       const schema = Yup.object().shape({
         lot_id: Yup.string().uuid().required(),
         use_type_id: Yup.string().uuid().required(),

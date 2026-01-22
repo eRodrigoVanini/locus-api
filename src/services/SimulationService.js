@@ -4,7 +4,7 @@ import UseType from "../models/UseType.js";
 
 class SimulationService {
   async calculate({ zone_id, use_type_id, lot_area }) {
-    // 1. Busca os parâmetros no banco
+    //Busca os parâmetros no banco
     const params = await UrbanParameter.findOne({
       where: {
         zone_id,
@@ -22,12 +22,12 @@ class SimulationService {
       );
     }
 
-    // 2. Validação: O lote é grande o suficiente?
+    //Validação: O lote é grande o suficiente?
     const is_lot_allowed = params.min_lot_area
       ? lot_area >= params.min_lot_area
       : true;
 
-    // 3. Cálculos Matemáticos (A Lógica de Negócio)
+    //Cálculos Matemáticos (A Lógica de Negócio)
 
     // Potencial Construtivo (Área total que pode ter de chão construído somando andares)
     // Fórmula: Área do Terreno * Coeficiente de Aproveitamento (CA)
@@ -47,7 +47,10 @@ class SimulationService {
       ? (lot_area * params.min_permeability_rate).toFixed(2)
       : null;
 
-    // 4. Retorna o objeto "mastigado" para o Frontend
+    // Valor da Densidade Máxima (habitantes por hectare)
+    const max_density = params.max_density.toFixed(3);
+
+    //Retorna o objeto para o Frontend
     return {
       allowed: is_lot_allowed, // true ou false
       message: is_lot_allowed
@@ -59,13 +62,14 @@ class SimulationService {
         use: params.use_type.name,
       },
       indices: {
-        // Retornamos os índices originais para referência
-        ca: params.max_floor_area_ratio,
-        to: params.max_lot_coverage,
-        tp: params.min_permeability_rate,
+        // Retorna os índices originais para referência
+        max_floor_area_ratio: params.max_floor_area_ratio,
+        max_lot_coverage: params.max_lot_coverage,
+        min_permeability_rate: params.min_permeability_rate,
+        max_density: max_density,
       },
       results: {
-        // Retornamos os valores calculados em Metros Quadrados
+        // Retorna os valores calculados em Metros Quadrados
         max_construction_area_m2: Number(max_construction_area),
         max_ground_floor_area_m2: Number(max_ground_floor_area),
         min_permeable_area_m2: Number(min_permeable_area),
