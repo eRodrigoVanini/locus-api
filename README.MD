@@ -53,6 +53,18 @@ This is a **REST API** backend project.
 
 ---
 
+## 🛡️ Security & Compliance (AppSec)
+
+This project was developed following core **Secure by Design** principles:
+
+- **Input Validation:** Strict data validation using **Yup** to prevent improper data injection.
+- **Protection Headers:** Implementation of **Helmet** to secure HTTP headers against common vulnerabilities (XSS, Sniffing, etc).
+- **Rate Limiting:** Application-layer protection against Brute Force and DoS attacks.
+- **Secure Uploads:** Strict MIME-Type validation and file size limits to mitigate Remote Code Execution (RCE) risks.
+- **Password Hashing:** Usage of **Bcrypt** with salting for secure credential storage.
+
+---
+
 ## 📁 Project Structure
 
 ```
