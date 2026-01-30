@@ -1,28 +1,42 @@
+# ------------------------------------------------
+# 1. Dependências
 node_modules/
-package-lock.json # OPCIONAL: Algumas empresas versionam, outras não. Para projetos pessoais, pode versionar (não coloque aqui).
+package-lock.json # Opcional: Algumas empresas versionam, outras não. Se travar, tire essa linha.
+yarn.lock
 
+# ------------------------------------------------
+# 2. Segurança & Ambiente 
 .env
 .env.test
 .env.production
 .env.local
 
-logs
-*.log
+# ------------------------------------------------
+# 3. Logs & Debug 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-lerna-debug.log*
+logs/
+*.log
 
-.DS_Store
-Thumbs.db
-ehthumbs.db
-Desktop.ini
+# ------------------------------------------------
+# 4. Uploads & Arquivos Gerados
+*.exe
+uploads/avatars/*
+!uploads/avatars/.gitkeep
 
-.idea/
-.vscode/
-*.swp
-*.swo
+src/uploads/*
+!src/uploads/.gitkeep
 
-coverage/
+tmp/
+temp/
 
-docker-data/
+# ------------------------------------------------
+# 5. Sistema Operacional & Editores
+.DS_Store       # Mac
+Thumbs.db       # Windows
+.vscode/        # Configurações locais do seu VS Code
+.idea/          # WebStorm/IntelliJ
+dist/
+build/
+coverage/       # Relatórios de testes
