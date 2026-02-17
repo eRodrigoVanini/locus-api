@@ -4,7 +4,7 @@ import UrbanParameters from "../controllers/UrbanParamemtersController.js";
 
 const routes = Router();
 
-routes.get("/", UrbanParameters.index);
+routes.get("/", loginRequired, UrbanParameters.index);
 routes.post("/", loginRequired, UrbanParameters.store);
 
 export default routes;

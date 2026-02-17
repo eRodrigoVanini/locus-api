@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default {
   async up(queryInterface) {
-    // 1. Gerar o hash da senha manualmente (já que o Seeder pula os Hooks do Model)
     const passwordHash = await bcrypt.hash('123456', 8);
 
     await queryInterface.bulkInsert('users', [
