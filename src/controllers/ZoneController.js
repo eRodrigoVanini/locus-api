@@ -1,8 +1,8 @@
-import * as Yup from 'yup';
-import Zone from '../models/Zone.js';
-import City from '../models/City.js';
-import UrbanParameter from '../models/UrbanParameter.js';
-import UseType from '../models/UseType.js';
+import * as Yup from "yup";
+import Zone from "../models/Zone.js";
+import City from "../models/City.js";
+import UrbanParameter from "../models/UrbanParameter.js";
+import UseType from "../models/UseType.js";
 
 class ZoneController {
   // 1. CRIAR (STORE)
@@ -11,18 +11,18 @@ class ZoneController {
       const schema = Yup.object().shape({
         name: Yup.string().required(),
         acronym: Yup.string().required(),
-        description: Yup.string().required(),
+        description: Yup.string().notRequired(),
         city_id: Yup.string().uuid().required(),
       });
 
       if (!(await schema.isValid(req.body))) {
-        return res.status(400).json({ error: 'Dados inválidos.' });
+        return res.status(400).json({ error: "Dados inválidos." });
       }
 
       const zone = await Zone.create(req.body);
       return res.status(201).json(zone);
     } catch (error) {
-      return res.status(500).json({ error: 'Erro ao criar zona.' });
+      return res.status(500).json({ error: "Erro ao criar zona." });
     }
   }
 
@@ -34,13 +34,13 @@ class ZoneController {
 
       const zones = await Zone.findAll({
         where,
-        include: [{ model: City, as: 'city', attributes: ['name', 'state'] }],
-        order: [['name', 'ASC']],
+        include: [{ model: City, as: "city", attributes: ["name", "state"] }],
+        order: [["acronym", "DESC"]],
       });
 
       return res.json(zones);
     } catch (error) {
-      return res.status(500).json({ error: 'Erro ao buscar zonas.' });
+      return res.status(500).json({ error: "Erro ao buscar zonas." });
     }
   }
 
@@ -51,22 +51,24 @@ class ZoneController {
 
       const zone = await Zone.findByPk(id, {
         include: [
-          { model: City, as: 'city' },
+          { model: City, as: "city" },
           {
             model: UrbanParameter,
-            as: 'parameters',
-            include: [{ model: UseType, as: 'use_type', attributes: ['name'] }],
+            as: "parameters",
+            include: [{ model: UseType, as: "use_type", attributes: ["name"] }],
           },
         ],
       });
 
       if (!zone) {
-        return res.status(404).json({ error: 'Zona não encontrada.' });
+        return res.status(404).json({ error: "Zona não encontrada." });
       }
 
       return res.json(zone);
     } catch (error) {
-      return res.status(500).json({ error: 'Erro ao buscar detalhes da zona.' });
+      return res
+        .status(500)
+        .json({ error: "Erro ao buscar detalhes da zona." });
     }
   }
 
@@ -83,20 +85,20 @@ class ZoneController {
       });
 
       if (!(await schema.isValid(req.body))) {
-        return res.status(400).json({ error: 'Dados inválidos.' });
+        return res.status(400).json({ error: "Dados inválidos." });
       }
 
       const zone = await Zone.findByPk(id);
 
       if (!zone) {
-        return res.status(404).json({ error: 'Zona não encontrada.' });
+        return res.status(404).json({ error: "Zona não encontrada." });
       }
 
       await zone.update(req.body);
 
       return res.json(zone);
     } catch (error) {
-      return res.status(500).json({ error: 'Erro ao atualizar zona.' });
+      return res.status(500).json({ error: "Erro ao atualizar zona." });
     }
   }
 
@@ -108,20 +110,21 @@ class ZoneController {
       const zone = await Zone.findByPk(id);
 
       if (!zone) {
-        return res.status(404).json({ error: 'Zona não encontrada.' });
+        return res.status(404).json({ error: "Zona não encontrada." });
       }
 
       await zone.destroy();
 
-      return res.json({ message: 'Zona excluída com sucesso.' });
+      return res.json({ message: "Zona excluída com sucesso." });
     } catch (error) {
       // Se tentar apagar uma zona que tem lotes vinculados, o banco trava
-      if (error.name === 'SequelizeForeignKeyConstraintError') {
-        return res.status(400).json({ 
-          error: "Não é possível excluir esta zona pois existem Lotes ou Parâmetros vinculados a ela." 
+      if (error.name === "SequelizeForeignKeyConstraintError") {
+        return res.status(400).json({
+          error:
+            "Não é possível excluir esta zona pois existem Lotes ou Parâmetros vinculados a ela.",
         });
       }
-      return res.status(500).json({ error: 'Erro ao excluir zona.' });
+      return res.status(500).json({ error: "Erro ao excluir zona." });
     }
   }
 }

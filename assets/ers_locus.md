@@ -3,7 +3,7 @@
 **Projeto:** Locus API (Calculadora de Estudos de Viabilidade Urbanística)  
 **Versão:** 1.0  
 **Autor:** Rodrigo Vanini  
-**Cidade – UF:** Salto – SP  
+**Cidade – UF:** Campinas – SP  
 **Data:** Janeiro/2026
 
 ---
@@ -40,10 +40,14 @@ A aplicação será especificada como uma plataforma **SaaS (Software as a Servi
 
 ### 1.4 Referências
 
-| Nº  | Título                              | Data Aquisição | Responsável pelo Fornecimento                |
-| --- | ----------------------------------- | -------------- | -------------------------------------------- |
-| 01  | Plano Diretor do Município de Salto | 20/01/2025     | Prefeitura Municipal de Salto (Site Oficial) |
-| 02  | Lei de Zoneamento e Uso do Solo     | 20/01/2025     | Prefeitura Municipal de Salto                |
+| Nº  | Título                                   | Data Aquisição | Responsável pelo Fornecimento                     |
+| --- | ---------------------------------------- | -------------- | ------------------------------------------------- |
+| 01  | Plano Diretor do Município de Campinas   | 20/01/2025     | Prefeitura Municipal de Campinas (Site Oficial)   |
+| 02  | Lei de Zoneamento e Uso do Solo          | 20/01/2025     | Prefeitura Municipal de Campinas                  |
+| 03  | Plano Diretor do Município de Indaiatuba | 20/01/2025     | Prefeitura Municipal de Indaiatuba (Site Oficial) |
+| 04  | Lei de Zoneamento e Uso do Solo          | 20/01/2025     | Prefeitura Municipal de Indaiatuba                |
+| 05  | Plano Diretor do Município de Salto      | 20/01/2025     | Prefeitura Municipal de Salto (Site Oficial)      |
+| 06  | Lei de Zoneamento e Uso do Solo          | 20/01/2025     | Prefeitura Municipal de Salto                     |
 
 ### 1.5 Informações Adicionais
 

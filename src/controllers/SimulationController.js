@@ -11,12 +11,9 @@ class SimulationController {
       });
 
       if (!(await schema.isValid(req.body))) {
-        return res
-          .status(400)
-          .json({
-            error:
-              "Validação falhou. Verifique zone_id, use_type_id e lot_area.",
-          });
+        return res.status(400).json({
+          error: "Validação falhou. Verifique zone_id, use_type_id e lot_area.",
+        });
       }
 
       const { zone_id, use_type_id, lot_area } = req.body;

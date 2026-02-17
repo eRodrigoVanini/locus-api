@@ -34,6 +34,9 @@ const PORT = process.env.PORT;
 import routes from "./src/routes/index.routes.js";
 
 routes(app);
+app.use("/", (req, res) => {
+  return res.json(`Servidor Online!`);
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

@@ -1,13 +1,10 @@
 import { Router } from "express";
-import CityController from "../controllers/CityController.js";
 import loginRequired from "../middlewares/loginRequired.js";
+import UrbanParameters from "../controllers/UrbanParamemtersController.js";
 
 const routes = Router();
 
-routes.get("/", CityController.index);
-routes.get("/show/:id", CityController.show);
-routes.post("/", loginRequired, CityController.store);
-routes.delete("/:id", loginRequired, CityController.delete);
-routes.put("/:id", loginRequired, CityController.update);
+routes.get("/", UrbanParameters.index);
+routes.post("/", loginRequired, UrbanParameters.store);
 
 export default routes;
