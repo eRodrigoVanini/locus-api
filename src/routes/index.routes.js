@@ -1,4 +1,3 @@
-/*import usersRoutes from "./users.routes.js";*/
 import citiesRoutes from "./cities.routes.js";
 import filesRoutes from "./files.routes.js";
 import lotsRoutes from "./lots.routes.js";

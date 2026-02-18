@@ -16,7 +16,7 @@ class AnalysisController {
       if (!(await schema.isValid(req.body))) {
         return res
           .status(400)
-          .json('{ error: "Validação falhou. Informe lot_id e use_type_id." }');
+          .json({ error: "Validação falhou. Informe lot_id e use_type_id." });
       }
 
       const { lot_id, use_type_id } = req.body;

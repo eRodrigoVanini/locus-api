@@ -26,29 +26,22 @@ class SimulationService {
       ? lot_area >= params.min_lot_area
       : true;
 
-    //Cálculos Matemáticos
-
-    // Potencial Construtivo
     const max_construction_area = params.max_floor_area_ratio
       ? (lot_area * params.max_floor_area_ratio).toFixed(2)
       : null;
 
-    // Área Máxima de Ocupação 
     const max_ground_floor_area = params.max_lot_coverage
       ? (lot_area * params.max_lot_coverage).toFixed(2)
       : null;
 
-    // Área Mínima Permeável 
     const min_permeable_area = params.min_permeability_rate
       ? (lot_area * params.min_permeability_rate).toFixed(2)
       : null;
 
-    // Valor da Densidade Máxima 
     const max_density = params.max_density.toFixed(3);
 
-    //Retorna o objeto para o Frontend
     return {
-      allowed: is_lot_allowed, // true ou false
+      allowed: is_lot_allowed,
       message: is_lot_allowed
         ? "Lote apto para construção."
         : `Lote menor que o mínimo exigido (${params.min_lot_area}m²).`,
@@ -58,14 +51,14 @@ class SimulationService {
         use: params.use_type.name,
       },
       indices: {
-        // Retorna os índices originais para referência
+      
         max_floor_area_ratio: params.max_floor_area_ratio,
         max_lot_coverage: params.max_lot_coverage,
         min_permeability_rate: params.min_permeability_rate,
         max_density: max_density,
       },
       results: {
-        // Retorna os valores calculados em Metros Quadrados
+      
         max_construction_area_m2: Number(max_construction_area),
         max_ground_floor_area_m2: Number(max_ground_floor_area),
         min_permeable_area_m2: Number(min_permeable_area),

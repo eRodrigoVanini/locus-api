@@ -16,7 +16,7 @@ Este documento tem por objetivo demonstrar todas as características do software
 
 ### 1.2 Escopo
 
-O produto a ser desenvolvido denomina-se **Locus**. Trata-se de um sistema web voltado para o ramo de **Arquitetura e Urbanismo/Setor Imobiliário/Setor Educativo**, cujo principal objetivo é automatizar o cálculo de índices urbanísticos (Coeficiente de Aproveitamento, Taxa de Ocupação, dentre outros), permitindo a análise instantânea de viabilidade construtiva de lotes urbanos.
+O produto a ser desenvolvido denomina-se **Locus**. Trata-se de um sistema web voltado para o ramo de **Arquitetura e Urbanismo/Setor Imobiliário/Setor Educativo**, cujo objetivo inicial é automatizar o cálculo de índices urbanísticos (Coeficiente de Aproveitamento, Taxa de Ocupação, dentre outros), permitindo a análise instantânea de viabilidade construtiva em lotes urbanos.
 
 O software fará a gestão centralizada das regras de zoneamento municipais (Plano Diretor), permitindo o cadastro de Cidades, Zonas e Tipos de Uso. O sistema cruzará os dados informados pelo usuário (área do terreno e localização) com as regras cadastradas no banco de dados para gerar automaticamente o potencial construtivo.
 
@@ -44,7 +44,7 @@ A aplicação será especificada como uma plataforma **SaaS (Software as a Servi
 | --- | ---------------------------------------- | -------------- | ------------------------------------------------- |
 | 01  | Plano Diretor do Município de Campinas   | 20/01/2025     | Prefeitura Municipal de Campinas (Site Oficial)   |
 | 02  | Lei de Zoneamento e Uso do Solo          | 20/01/2025     | Prefeitura Municipal de Campinas                  |
-| 03  | Plano Diretor do Município de Indaiatuba | 20/01/2025     | Prefeitura Municipal de Indaiatuba (Site Oficial) |
+| 03  | Plano Diretor do Município de Hortolândia | 20/01/2025     | Prefeitura Municipal de Hortolândia (Site Oficial) |
 | 04  | Lei de Zoneamento e Uso do Solo          | 20/01/2025     | Prefeitura Municipal de Indaiatuba                |
 | 05  | Plano Diretor do Município de Salto      | 20/01/2025     | Prefeitura Municipal de Salto (Site Oficial)      |
 | 06  | Lei de Zoneamento e Uso do Solo          | 20/01/2025     | Prefeitura Municipal de Salto                     |
@@ -65,7 +65,7 @@ Este documento está organizado em capítulos que detalham a descrição geral d
 
 ### 2.1 Estudo de Viabilidade
 
-A alternativa selecionada para a informatização foi o desenvolvimento de uma **Aplicação Web (Web App)**, utilizando arquitetura Cliente-Servidor (API REST em Node.js e Frontend em HTML/JS).
+A alternativa selecionada para a informatização foi o desenvolvimento de uma **Aplicação Web (Web App)**, utilizando arquitetura Cliente-Servidor (API REST em Node.js).
 
 #### Viabilidade Técnica
 
@@ -143,10 +143,11 @@ O sistema deve permitir criar, listar, editar e remover naturezas de uso do solo
 #### Módulo 2: Regras de Negócio (Core)
 
 **[RF005] Definir Regras de Zoneamento**  
-O sistema deve permitir vincular uma Zona a um Tipo de Uso atribuindo índices específicos:
+O sistema deve permitir vincular uma Zona a um Tipo de Uso atribuindo valores específicos aos tipos de índices:
 
 - Coeficiente de Aproveitamento (CA)
 - Taxa de Ocupação (TO)
+- Taxa de Permeabilidade (TP)
 - Recuos (Frontal, Lateral, Fundos) - Expansão futura
 - Gabarito de Altura - Expansão futura
 
